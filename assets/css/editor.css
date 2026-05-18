@@ -1,0 +1,13 @@
+.editor-styles-wrapper :where(.is-style-aculect-card, .is-style-aculect-callout, .is-style-aculect-surface) {
+	outline: 1px solid rgba(29, 78, 216, 0.12);
+}
+
+.editor-styles-wrapper :where(.is-style-aculect-hero) {
+	min-height: 280px;
+}
+
+.editor-styles-wrapper :where(.is-style-aculect-feature-grid > .wp-block-column:empty)::after {
+	color: #646970;
+	content: "Add feature content";
+	font-size: 0.875rem;
+}

@@ -7,6 +7,10 @@ custom blocks.
 
 ## Current Features
 
+- Adds a modular settings screen under Settings > Aculect Blocks.
+- Registers portable style variations for core Group, Columns, List, and Button
+  blocks.
+- Loads scoped frontend and editor CSS for Aculect block variations.
 - Adds Rank Math `FAQPage` schema for WordPress 6.9 core Accordion blocks.
 - Preserves supported HTML in FAQ answers, matching Google Search's documented
   `Answer.text` support.

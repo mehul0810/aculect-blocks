@@ -9,12 +9,30 @@ declare(strict_types=1);
 
 namespace Aculect\Blocks\Integrations;
 
+use Aculect\Blocks\Contracts\Module;
+use Aculect\Blocks\Settings\SettingsRepository;
 use Aculect\Blocks\StructuredData\AccordionFaqExtractor;
 
 /**
  * Adds FAQPage JSON-LD for visible core Accordion block content.
  */
-final class RankMathFaqSchema {
+final class RankMathFaqSchema implements Module {
+	/**
+	 * Settings repository.
+	 *
+	 * @var SettingsRepository
+	 */
+	private SettingsRepository $settings;
+
+	/**
+	 * Creates the FAQ schema integration.
+	 *
+	 * @param SettingsRepository $settings Settings repository.
+	 */
+	public function __construct( SettingsRepository $settings ) {
+		$this->settings = $settings;
+	}
+
 	/**
 	 * Registers integration hooks.
 	 */
@@ -46,7 +64,7 @@ final class RankMathFaqSchema {
 		 *
 		 * @param bool $enabled Whether FAQPage schema output is enabled.
 		 */
-		$enabled = (bool) apply_filters( 'aculect_blocks_enable_faq_schema', true );
+		$enabled = $this->settings->is_enabled( 'faq_schema_enabled' ) && (bool) apply_filters( 'aculect_blocks_enable_faq_schema', true );
 
 		if ( ! $enabled || $this->contains_faq_schema( $data ) ) {
 			return $data;

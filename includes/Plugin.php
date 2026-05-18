@@ -9,7 +9,13 @@ declare(strict_types=1);
 
 namespace Aculect\Blocks;
 
+use Aculect\Blocks\Admin\AdminPage;
+use Aculect\Blocks\Assets\AdminAssets;
+use Aculect\Blocks\Assets\BlockAssets;
+use Aculect\Blocks\Blocks\CoreBlockStyles;
+use Aculect\Blocks\Contracts\Module;
 use Aculect\Blocks\Integrations\RankMathFaqSchema;
+use Aculect\Blocks\Settings\SettingsRepository;
 
 /**
  * Coordinates plugin integrations.
@@ -21,6 +27,20 @@ final class Plugin {
 	 * @var self|null
 	 */
 	private static ?self $instance = null;
+
+	/**
+	 * Settings repository.
+	 *
+	 * @var SettingsRepository
+	 */
+	private SettingsRepository $settings;
+
+	/**
+	 * Creates the plugin composition root.
+	 */
+	private function __construct() {
+		$this->settings = new SettingsRepository();
+	}
 
 	/**
 	 * Gets the shared plugin instance.
@@ -38,7 +58,10 @@ final class Plugin {
 	 */
 	public function register(): void {
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-		add_action( 'init', array( $this, 'register_integrations' ) );
+
+		foreach ( $this->modules() as $module ) {
+			$module->register();
+		}
 	}
 
 	/**
@@ -53,9 +76,17 @@ final class Plugin {
 	}
 
 	/**
-	 * Registers integrations that extend core WordPress behavior.
+	 * Gets plugin modules.
+	 *
+	 * @return array<int, Module>
 	 */
-	public function register_integrations(): void {
-		( new RankMathFaqSchema() )->register();
+	private function modules(): array {
+		return array(
+			new AdminPage( $this->settings ),
+			new AdminAssets(),
+			new BlockAssets( $this->settings ),
+			new CoreBlockStyles( $this->settings ),
+			new RankMathFaqSchema( $this->settings ),
+		);
 	}
 }
