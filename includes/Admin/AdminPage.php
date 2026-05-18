@@ -152,8 +152,33 @@ final class AdminPage implements Module {
 		?>
 		<li>
 			<span><?php echo esc_html( $label ); ?></span>
-			<strong class="<?php echo esc_attr( $is_ok ? 'is-ok' : 'is-muted' ); ?>"><?php echo esc_html( $value ); ?></strong>
+			<strong class="<?php echo esc_attr( $is_ok ? 'is-ok' : 'is-muted' ); ?>">
+				<?php $this->render_heroicon( $is_ok ? 'check-circle' : 'minus-circle' ); ?>
+				<?php echo esc_html( $value ); ?>
+			</strong>
 		</li>
+		<?php
+	}
+
+	/**
+	 * Renders a supported Heroicons glyph.
+	 *
+	 * @param string $name Icon name.
+	 */
+	private function render_heroicon( string $name ): void {
+		if ( 'check-circle' === $name ) {
+			?>
+			<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+				<path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+			</svg>
+			<?php
+			return;
+		}
+
+		?>
+		<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+			<path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM7 9.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5H7Z" clip-rule="evenodd" />
+		</svg>
 		<?php
 	}
 }
