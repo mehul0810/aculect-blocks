@@ -1,0 +1,20 @@
+{
+	"name": "aculect-blocks",
+	"version": "0.1.0",
+	"description": "Enterprise-ready block variations, patterns, and core block enhancements for WordPress block themes.",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"engines": {
+		"node": ">=20.10.0",
+		"npm": ">=10.2.3"
+	},
+	"scripts": {
+		"lint:js": "wp-scripts lint-js \"src/**/*.js\"",
+		"lint:css": "wp-scripts lint-style \"src/**/*.css\" \"src/**/*.scss\"",
+		"lint": "npm run lint:js && npm run lint:css",
+		"format": "wp-scripts format"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^31.0.0"
+	}
+}

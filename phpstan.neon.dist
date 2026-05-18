@@ -1,0 +1,13 @@
+parameters:
+	level: 5
+	paths:
+		- aculect-blocks.php
+		- includes
+	scanFiles:
+		- vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+	bootstrapFiles:
+		- vendor/szepeviktor/phpstan-wordpress/bootstrap.php
+	excludePaths:
+		analyse:
+			- vendor
+			- node_modules
