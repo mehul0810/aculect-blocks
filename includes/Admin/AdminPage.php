@@ -90,6 +90,7 @@ final class AdminPage implements Module {
 					<?php $this->render_toggle( 'block_styles_enabled', __( 'Core block style variations', 'aculect-blocks' ), __( 'Registers enterprise-ready style variations for Group, Columns, List, and Button blocks.', 'aculect-blocks' ), $settings ); ?>
 					<?php $this->render_toggle( 'editor_assets_enabled', __( 'Editor authoring polish', 'aculect-blocks' ), __( 'Loads editor-only styles that make Aculect block variations easier to identify while editing.', 'aculect-blocks' ), $settings ); ?>
 					<?php $this->render_toggle( 'faq_schema_enabled', __( 'Accordion FAQ schema', 'aculect-blocks' ), __( 'Adds valid FAQPage schema from core Accordion blocks through Rank Math when FAQ content is present.', 'aculect-blocks' ), $settings ); ?>
+					<?php $this->render_toggle( 'breadcrumb_schema_enabled', __( 'Breadcrumb schema', 'aculect-blocks' ), __( 'Adds BreadcrumbList schema from rendered core Breadcrumbs blocks.', 'aculect-blocks' ), $settings ); ?>
 
 					<?php submit_button( __( 'Save module settings', 'aculect-blocks' ) ); ?>
 				</form>
@@ -101,6 +102,7 @@ final class AdminPage implements Module {
 							<?php $this->render_status( __( 'Block theme', 'aculect-blocks' ), wp_is_block_theme() ? __( 'Active', 'aculect-blocks' ) : __( 'Not active', 'aculect-blocks' ), wp_is_block_theme() ); ?>
 							<?php $this->render_status( __( 'Rank Math', 'aculect-blocks' ), defined( 'RANK_MATH_VERSION' ) ? __( 'Detected', 'aculect-blocks' ) : __( 'Not detected', 'aculect-blocks' ), defined( 'RANK_MATH_VERSION' ) ); ?>
 							<?php $this->render_status( __( 'FAQ schema', 'aculect-blocks' ), $settings['faq_schema_enabled'] ? __( 'Enabled', 'aculect-blocks' ) : __( 'Disabled', 'aculect-blocks' ), $settings['faq_schema_enabled'] ); ?>
+							<?php $this->render_status( __( 'Breadcrumb schema', 'aculect-blocks' ), $settings['breadcrumb_schema_enabled'] ? __( 'Enabled', 'aculect-blocks' ) : __( 'Disabled', 'aculect-blocks' ), $settings['breadcrumb_schema_enabled'] ); ?>
 						</ul>
 					</section>
 

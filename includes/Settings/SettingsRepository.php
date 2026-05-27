@@ -21,9 +21,10 @@ final class SettingsRepository {
 	 * @var array<string, bool>
 	 */
 	private const DEFAULTS = array(
-		'block_styles_enabled'  => true,
-		'editor_assets_enabled' => true,
-		'faq_schema_enabled'    => true,
+		'block_styles_enabled'      => true,
+		'editor_assets_enabled'     => true,
+		'faq_schema_enabled'        => true,
+		'breadcrumb_schema_enabled' => true,
 	);
 
 	/**

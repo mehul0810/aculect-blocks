@@ -14,6 +14,7 @@ use Aculect\Blocks\Assets\AdminAssets;
 use Aculect\Blocks\Assets\BlockAssets;
 use Aculect\Blocks\Blocks\CoreBlockStyles;
 use Aculect\Blocks\Contracts\Module;
+use Aculect\Blocks\Integrations\CoreBreadcrumbSchema;
 use Aculect\Blocks\Integrations\RankMathFaqSchema;
 use Aculect\Blocks\Settings\SettingsRepository;
 
@@ -86,6 +87,7 @@ final class Plugin {
 			new AdminAssets(),
 			new BlockAssets( $this->settings ),
 			new CoreBlockStyles( $this->settings ),
+			new CoreBreadcrumbSchema( $this->settings ),
 			new RankMathFaqSchema( $this->settings ),
 		);
 	}

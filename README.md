@@ -15,6 +15,8 @@ custom blocks.
 - Preserves supported HTML in FAQ answers, matching Google Search's documented
   `Answer.text` support.
 - Avoids duplicate output when Rank Math already has an `FAQPage` schema node.
+- Adds `BreadcrumbList` schema from rendered WordPress 7.0 core Breadcrumbs
+  blocks and avoids duplicate output when Rank Math already provides it.
 
 Google currently limits FAQ rich-result eligibility to well-known,
 authoritative government or health sites. This plugin emits valid structured
