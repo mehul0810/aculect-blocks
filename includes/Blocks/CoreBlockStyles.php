@@ -53,6 +53,7 @@ final class CoreBlockStyles implements Module {
 				'aculect-card'    => __( 'Aculect Card', 'aculect-blocks' ),
 				'aculect-callout' => __( 'Aculect Callout', 'aculect-blocks' ),
 				'aculect-hero'    => __( 'Aculect Hero', 'aculect-blocks' ),
+				'aculect-section' => __( 'Section', 'aculect-blocks' ),
 			),
 			'core/columns'   => array(
 				'aculect-feature-grid' => __( 'Aculect Feature Grid', 'aculect-blocks' ),

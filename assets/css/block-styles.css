@@ -39,6 +39,11 @@
 	padding-block: var(--wp--preset--spacing--80, 4.5rem);
 }
 
+.wp-block-group.is-style-aculect-section {
+	box-sizing: border-box;
+	padding-block: var(--wp--preset--spacing--6, 3rem);
+}
+
 :where(.is-style-aculect-feature-grid) {
 	gap: var(--wp--preset--spacing--50, 1.5rem);
 }
@@ -143,4 +148,11 @@
 	background: transparent;
 	color: var(--wp--preset--color--primary, #1e40af);
 	text-decoration: underline;
+}
+
+@media (min-width: 783px) {
+
+	.wp-block-group.is-style-aculect-section {
+		padding-block: var(--wp--preset--spacing--8, 4rem);
+	}
 }
