@@ -48,19 +48,23 @@ final class CoreBlockStyles implements Module {
 		}
 
 		$styles = array(
-			'core/group'   => array(
+			'core/group'     => array(
 				'aculect-surface' => __( 'Aculect Surface', 'aculect-blocks' ),
 				'aculect-card'    => __( 'Aculect Card', 'aculect-blocks' ),
 				'aculect-callout' => __( 'Aculect Callout', 'aculect-blocks' ),
 				'aculect-hero'    => __( 'Aculect Hero', 'aculect-blocks' ),
 			),
-			'core/columns' => array(
+			'core/columns'   => array(
 				'aculect-feature-grid' => __( 'Aculect Feature Grid', 'aculect-blocks' ),
 			),
-			'core/list'    => array(
+			'core/list'      => array(
 				'aculect-check-list' => __( 'Aculect Check List', 'aculect-blocks' ),
 			),
-			'core/button'  => array(
+			'core/paragraph' => array(
+				'aculect-pill' => __( 'Aculect Pill', 'aculect-blocks' ),
+				'aculect-caps' => __( 'Aculect Caps', 'aculect-blocks' ),
+			),
+			'core/button'    => array(
 				'aculect-secondary' => __( 'Aculect Secondary', 'aculect-blocks' ),
 			),
 		);

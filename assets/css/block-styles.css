@@ -78,6 +78,36 @@
 	-webkit-mask: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22currentColor%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M10%2018a8%208%200%201%200%200-16%208%208%200%200%200%200%2016Zm3.857-9.809a.75.75%200%200%200-1.214-.882l-3.483%204.79-1.88-1.88a.75.75%200%201%200-1.06%201.061l2.5%202.5a.75.75%200%200%200%201.137-.089l4-5.5Z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E) center / contain no-repeat;
 }
 
+:where(p.is-style-aculect-pill) {
+	align-items: center;
+	background: var(--wp--preset--color--primary-soft, #dbeafe);
+	border: 1px solid rgba(30, 64, 175, 0.18);
+	border-color: color-mix(in srgb, var(--wp--preset--color--primary, #1e40af) 18%, transparent);
+	border-radius: 999px;
+	box-sizing: border-box;
+	color: var(--wp--preset--color--primary, #1e40af);
+	display: inline-flex;
+	font-size: var(--wp--preset--font-size--small, 0.875rem);
+	font-weight: 600;
+	gap: 0.4rem;
+	letter-spacing: 0;
+	line-height: 1.2;
+	margin-block: 0;
+	max-width: 100%;
+	min-height: 2rem;
+	padding: 0.45rem 0.85rem;
+	vertical-align: middle;
+}
+
+:where(p.is-style-aculect-caps) {
+	color: var(--wp--preset--color--primary, #1e40af);
+	font-size: var(--wp--preset--font-size--caption, 0.75rem);
+	font-weight: 700;
+	letter-spacing: 0;
+	line-height: 1.4;
+	text-transform: uppercase;
+}
+
 :where(.wp-block-button.is-style-aculect-secondary .wp-block-button__link) {
 	background: transparent;
 	border-color: currentcolor;
