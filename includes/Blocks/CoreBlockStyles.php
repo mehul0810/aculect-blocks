@@ -55,6 +55,12 @@ final class CoreBlockStyles implements Module {
 				'aculect-hero'    => __( 'Aculect Hero', 'aculect-blocks' ),
 				'aculect-section' => __( 'Section', 'aculect-blocks' ),
 			),
+			'core/accordion' => array(
+				'aculect-faq' => array(
+					'label'      => __( 'FAQ', 'aculect-blocks' ),
+					'is_default' => true,
+				),
+			),
 			'core/columns'   => array(
 				'aculect-feature-grid' => __( 'Aculect Feature Grid', 'aculect-blocks' ),
 			),
@@ -71,13 +77,16 @@ final class CoreBlockStyles implements Module {
 		);
 
 		foreach ( $styles as $block_name => $block_styles ) {
-			foreach ( $block_styles as $style_name => $label ) {
+			foreach ( $block_styles as $style_name => $style_properties ) {
+				$registration = is_array( $style_properties )
+					? $style_properties
+					: array( 'label' => $style_properties );
+
+				$registration['name'] = $style_name;
+
 				register_block_style(
 					$block_name,
-					array(
-						'name'  => $style_name,
-						'label' => $label,
-					)
+					$registration
 				);
 			}
 		}

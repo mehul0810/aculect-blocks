@@ -44,6 +44,86 @@
 	padding-block: var(--wp--preset--spacing--6, 3rem);
 }
 
+.wp-block-accordion,
+.wp-block-accordion.is-style-aculect-faq {
+	display: grid;
+	gap: 0.75rem;
+}
+
+.wp-block-accordion .wp-block-accordion-item {
+	background: var(--wp--preset--color--surface, #fff);
+	border: 1px solid var(--wp--preset--color--border, #e2e8f0);
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+	overflow: hidden;
+}
+
+.wp-block-accordion .wp-block-accordion-heading {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0;
+}
+
+.wp-block-accordion .wp-block-accordion-heading__toggle {
+	align-items: center;
+	background: transparent;
+	border: 0;
+	color: var(--wp--preset--color--text, #09090b);
+	cursor: pointer;
+	display: flex;
+	font-family: var(--wp--preset--font-family--inter, inherit);
+	font-size: var(--wp--preset--font-size--base, 1rem);
+	font-weight: 700;
+	gap: 1rem;
+	justify-content: space-between;
+	line-height: 1.35;
+	min-height: 3.5rem;
+	padding: 1rem 1.25rem;
+	text-align: left;
+	width: 100%;
+}
+
+.wp-block-accordion .wp-block-accordion-heading__toggle:hover {
+	background: var(--wp--preset--color--surface-alt, #f8fafc);
+}
+
+.wp-block-accordion .wp-block-accordion-heading__toggle-title {
+	flex: 1 1 auto;
+}
+
+.wp-block-accordion .wp-block-accordion-heading__toggle-icon {
+	align-items: center;
+	color: var(--wp--preset--color--text, #09090b);
+	display: inline-flex;
+	flex: 0 0 auto;
+	font-size: var(--wp--preset--font-size--body-large, 1.125rem);
+	font-weight: 700;
+	height: 1.25rem;
+	justify-content: center;
+	line-height: 1;
+	transition: transform 160ms ease;
+	width: 1.25rem;
+}
+
+.wp-block-accordion .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle-icon {
+	transform: rotate(45deg);
+}
+
+.wp-block-accordion .wp-block-accordion-panel {
+	border-block-start: 1px solid var(--wp--preset--color--border, #e2e8f0);
+	color: var(--wp--preset--color--secondary-soft, #334155);
+	padding: 1rem 1.25rem 1.25rem;
+}
+
+.wp-block-accordion .wp-block-accordion-panel > :first-child {
+	margin-block-start: 0;
+}
+
+.wp-block-accordion .wp-block-accordion-panel > :last-child {
+	margin-block-end: 0;
+}
+
 :where(.is-style-aculect-feature-grid) {
 	gap: var(--wp--preset--spacing--50, 1.5rem);
 }
