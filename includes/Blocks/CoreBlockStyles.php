@@ -65,7 +65,7 @@ final class CoreBlockStyles implements Module {
 				'aculect-caps' => __( 'Aculect Caps', 'aculect-blocks' ),
 			),
 			'core/button'    => array(
-				'aculect-secondary' => __( 'Aculect Secondary', 'aculect-blocks' ),
+				'aculect-link' => __( 'Link', 'aculect-blocks' ),
 			),
 		);
 
