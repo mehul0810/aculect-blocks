@@ -40,8 +40,10 @@
 }
 
 .wp-block-group.is-style-aculect-section {
+	--aculect-section-padding-block: var(--wp--preset--spacing--6, 3rem);
+
 	box-sizing: border-box;
-	padding-block: var(--wp--preset--spacing--6, 3rem);
+	padding-block: var(--aculect-section-padding-block);
 }
 
 .wp-block-accordion,
@@ -234,6 +236,6 @@
 @media (min-width: 783px) {
 
 	.wp-block-group.is-style-aculect-section {
-		padding-block: var(--wp--preset--spacing--8, 4rem);
+		--aculect-section-padding-block: var(--wp--preset--spacing--8, 4rem);
 	}
 }
