@@ -23,7 +23,8 @@
 	"scripts": {
 		"lint": "phpcs",
 		"lint:fix": "phpcbf",
-		"phpstan": "php -d memory_limit=512M vendor/bin/phpstan analyse --memory-limit=512M"
+		"phpstan": "php -d memory_limit=512M vendor/bin/phpstan analyse --memory-limit=512M",
+		"test": "php tests/run.php"
 	},
 	"config": {
 		"allow-plugins": {

@@ -82,6 +82,14 @@ final class BlockAssets implements Module {
 				$dependencies,
 				ACULECT_BLOCKS_VERSION
 			);
+
+			wp_enqueue_script(
+				'aculect-blocks-editor-script',
+				plugins_url( 'src/index.js', ACULECT_BLOCKS_FILE ),
+				array( 'wp-blocks', 'wp-dom-ready', 'wp-i18n' ),
+				ACULECT_BLOCKS_VERSION,
+				true
+			);
 		}
 	}
 }

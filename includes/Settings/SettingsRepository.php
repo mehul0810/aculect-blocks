@@ -23,6 +23,7 @@ final class SettingsRepository {
 	private const DEFAULTS = array(
 		'block_styles_enabled'      => true,
 		'editor_assets_enabled'     => true,
+		'patterns_enabled'          => true,
 		'faq_schema_enabled'        => true,
 		'breadcrumb_schema_enabled' => true,
 	);

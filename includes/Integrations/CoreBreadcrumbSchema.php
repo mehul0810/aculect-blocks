@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Aculect\Blocks\Integrations;
 
 use Aculect\Blocks\Contracts\Module;
+use Aculect\Blocks\Schema\SchemaOutput;
 use Aculect\Blocks\Settings\SettingsRepository;
 use Aculect\Blocks\StructuredData\BreadcrumbListBuilder;
 
@@ -25,6 +26,13 @@ final class CoreBreadcrumbSchema implements Module {
 	private SettingsRepository $settings;
 
 	/**
+	 * Schema output helper.
+	 *
+	 * @var SchemaOutput
+	 */
+	private SchemaOutput $schema_output;
+
+	/**
 	 * Most recently rendered core breadcrumb items.
 	 *
 	 * @var array<int, mixed>|null
@@ -36,15 +44,17 @@ final class CoreBreadcrumbSchema implements Module {
 	 *
 	 * @var bool
 	 */
-	private bool $schema_output = false;
+	private bool $schema_emitted = false;
 
 	/**
 	 * Creates the breadcrumb schema integration.
 	 *
-	 * @param SettingsRepository $settings Settings repository.
+	 * @param SettingsRepository $settings      Settings repository.
+	 * @param SchemaOutput       $schema_output Shared schema output helper.
 	 */
-	public function __construct( SettingsRepository $settings ) {
-		$this->settings = $settings;
+	public function __construct( SettingsRepository $settings, SchemaOutput $schema_output ) {
+		$this->settings      = $settings;
+		$this->schema_output = $schema_output;
 	}
 
 	/**
@@ -83,7 +93,7 @@ final class CoreBreadcrumbSchema implements Module {
 		$items                = $this->captured_items;
 		$this->captured_items = null;
 
-		if ( '' === trim( $block_content ) || $this->schema_output || ! is_array( $items ) || ! $this->is_enabled() ) {
+		if ( '' === trim( $block_content ) || $this->schema_emitted || ! is_array( $items ) || ! $this->is_enabled() ) {
 			return $block_content;
 		}
 
@@ -98,15 +108,15 @@ final class CoreBreadcrumbSchema implements Module {
 			return $block_content;
 		}
 
-		$json = wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+		$script = $this->schema_output->render_script( $schema, 'aculect-blocks-breadcrumb-schema' );
 
-		if ( ! is_string( $json ) ) {
+		if ( '' === $script ) {
 			return $block_content;
 		}
 
-		$this->schema_output = true;
+		$this->schema_emitted = true;
 
-		return $block_content . "\n" . '<script type="application/ld+json" class="aculect-blocks-breadcrumb-schema">' . $json . '</script>';
+		return $block_content . "\n" . $script;
 	}
 
 	/**
@@ -120,8 +130,8 @@ final class CoreBreadcrumbSchema implements Module {
 	public function track_rank_math_breadcrumb_schema( mixed $data, mixed $jsonld ): mixed {
 		unset( $jsonld );
 
-		if ( is_array( $data ) && $this->contains_breadcrumb_schema( $data ) ) {
-			$this->schema_output = true;
+		if ( is_array( $data ) && $this->schema_output->contains_type( $data, 'BreadcrumbList' ) ) {
+			$this->schema_emitted = true;
 		}
 
 		return $data;
@@ -156,40 +166,5 @@ final class CoreBreadcrumbSchema implements Module {
 		}
 
 		return home_url( '/' );
-	}
-
-	/**
-	 * Checks whether schema nodes already include a BreadcrumbList.
-	 *
-	 * @param array<mixed> $nodes Schema nodes.
-	 */
-	private function contains_breadcrumb_schema( array $nodes ): bool {
-		foreach ( $nodes as $node ) {
-			if ( ! is_array( $node ) ) {
-				continue;
-			}
-
-			if ( $this->node_has_type( $node, 'BreadcrumbList' ) ) {
-				return true;
-			}
-
-			if ( isset( $node['@graph'] ) && is_array( $node['@graph'] ) && $this->contains_breadcrumb_schema( $node['@graph'] ) ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Checks whether a schema node has the requested @type.
-	 *
-	 * @param array<mixed> $node Schema node.
-	 * @param string       $type Schema type to find.
-	 */
-	private function node_has_type( array $node, string $type ): bool {
-		$node_type = $node['@type'] ?? null;
-
-		return $type === $node_type || ( is_array( $node_type ) && in_array( $type, $node_type, true ) );
 	}
 }
