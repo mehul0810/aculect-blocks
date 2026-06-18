@@ -5,7 +5,7 @@
 	color: var(--wp--preset--color--ink, #111827);
 }
 
-:where(.is-style-aculect-card) {
+:where(.is-style-aculect-card, .is-style-aculect-clickable-card) {
 	background: var(--wp--preset--color--surface, #fff);
 	border: 1px solid var(--wp--preset--color--border, #d0d7de);
 	border-radius: 8px;
@@ -13,6 +13,29 @@
 	box-sizing: border-box;
 	color: var(--wp--preset--color--ink, #111827);
 	padding: var(--wp--preset--spacing--60, 2rem);
+}
+
+:where(.is-style-aculect-clickable-card) {
+	position: relative;
+	transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+:where(.is-style-aculect-clickable-card:hover, .is-style-aculect-clickable-card:focus-within) {
+	border-color: var(--wp--preset--color--primary, #1d4ed8);
+	box-shadow: var(--wp--preset--shadow--deep, 0 20px 48px rgba(15, 23, 42, 0.14));
+	transform: translateY(-2px);
+}
+
+:where(.is-style-aculect-clickable-card .wp-block-button.aculect-card__link .wp-block-button__link)::after {
+	content: "";
+	inset: 0;
+	position: absolute;
+	z-index: 1;
+}
+
+:where(.is-style-aculect-clickable-card :is(a, button, input, select, textarea)) {
+	position: relative;
+	z-index: 2;
 }
 
 :where(.is-style-aculect-card > :first-child, .is-style-aculect-callout > :first-child) {
@@ -33,7 +56,7 @@
 }
 
 :where(.is-style-aculect-hero) {
-	background: linear-gradient(135deg, var(--wp--preset--color--surface-alt, #f8fafc), var(--wp--preset--color--surface-accent, #eff6ff));
+	background: var(--wp--preset--color--surface-alt, #f8fafc);
 	border-block: 1px solid var(--wp--preset--color--border, #d0d7de);
 	color: var(--wp--preset--color--ink, #111827);
 	padding-block: var(--wp--preset--spacing--80, 4.5rem);
