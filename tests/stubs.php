@@ -8,6 +8,8 @@
 declare(strict_types=1);
 
 $GLOBALS['aculect_blocks_test_options'] = array();
+$GLOBALS['aculect_blocks_test_pattern_categories'] = array();
+$GLOBALS['aculect_blocks_test_patterns'] = array();
 
 function test_assert( bool $condition, string $message ): void {
 	if ( ! $condition ) {
@@ -82,4 +84,16 @@ function rest_sanitize_boolean( mixed $value ): bool {
 	}
 
 	return (bool) $value;
+}
+
+function register_block_pattern_category( string $name, array $properties ): bool {
+	$GLOBALS['aculect_blocks_test_pattern_categories'][ $name ] = $properties;
+
+	return true;
+}
+
+function register_block_pattern( string $name, array $properties ): bool {
+	$GLOBALS['aculect_blocks_test_patterns'][ $name ] = $properties;
+
+	return true;
 }

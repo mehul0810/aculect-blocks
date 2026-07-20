@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/mehul0810/aculect-blocks
  * Description: Enterprise-ready block variations, patterns, and core block enhancements for WordPress block themes.
  * Version: 0.1.0
- * Requires at least: 6.9
+ * Requires at least: 7.0
  * Requires PHP: 8.2
  * Author: Mehul Gohil
  * Author URI: https://mehulgohil.com
