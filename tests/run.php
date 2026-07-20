@@ -11,6 +11,7 @@ require __DIR__ . '/stubs.php';
 require dirname( __DIR__ ) . '/vendor/autoload.php';
 
 use Aculect\Blocks\Schema\SchemaOutput;
+use Aculect\Blocks\Blocks\CoreBlockPatterns;
 use Aculect\Blocks\Settings\SettingsRepository;
 use Aculect\Blocks\StructuredData\AccordionFaqExtractor;
 use Aculect\Blocks\StructuredData\BreadcrumbListBuilder;
@@ -109,6 +110,27 @@ $tests['SettingsRepository keeps new defaults and sanitizes booleans'] = static 
 	test_assert_same( true, $settings['editor_assets_enabled'], 'Expected editor assets to sanitize true.' );
 	test_assert_same( false, $settings['patterns_enabled'], 'Expected patterns to sanitize false.' );
 	test_assert_same( true, $settings['breadcrumb_schema_enabled'], 'Expected breadcrumb schema to sanitize true.' );
+};
+
+$tests['Core patterns use registered styles and WordPress 7.0 blocks'] = static function (): void {
+	$GLOBALS['aculect_blocks_test_options']            = array();
+	$GLOBALS['aculect_blocks_test_pattern_categories'] = array();
+	$GLOBALS['aculect_blocks_test_patterns']           = array();
+
+	( new CoreBlockPatterns( new SettingsRepository() ) )->register_patterns();
+
+	test_assert_same( 3, count( $GLOBALS['aculect_blocks_test_patterns'] ), 'Expected all public core-block patterns to register.' );
+
+	$card_grid = $GLOBALS['aculect_blocks_test_patterns']['aculect-blocks/card-grid']['content'] ?? '';
+	test_assert( is_string( $card_grid ), 'Expected card-grid pattern content.' );
+	test_assert( str_contains( $card_grid, 'is-style-outline' ), 'Expected the card-grid pattern to use the core outline button style.' );
+	test_assert( ! str_contains( $card_grid, 'aculect-secondary' ), 'Expected the card-grid pattern to avoid an unregistered theme-specific button style.' );
+
+	$faq = $GLOBALS['aculect_blocks_test_patterns']['aculect-blocks/faq-accordion']['content'] ?? '';
+	test_assert( is_string( $faq ) && str_contains( $faq, '<!-- wp:accordion -->' ), 'Expected the FAQ pattern to use the WordPress 7.0 Accordion block.' );
+
+	$breadcrumb = $GLOBALS['aculect_blocks_test_patterns']['aculect-blocks/breadcrumb-header']['content'] ?? '';
+	test_assert( is_string( $breadcrumb ) && str_contains( $breadcrumb, '<!-- wp:breadcrumbs /-->' ), 'Expected the breadcrumb pattern to use the WordPress 7.0 Breadcrumbs block.' );
 };
 
 $failures = 0;

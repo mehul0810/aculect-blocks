@@ -15,7 +15,7 @@
 	<arg name="colors"/>
 
 	<config name="testVersion" value="8.2-"/>
-	<config name="minimum_supported_wp_version" value="6.9"/>
+	<config name="minimum_supported_wp_version" value="7.0"/>
 
 	<rule ref="WordPress"/>
 	<rule ref="WordPressVIPMinimum"/>
