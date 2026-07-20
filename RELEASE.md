@@ -29,9 +29,11 @@ Composer development dependencies.
 
 ## WordPress proof
 
-Install the ZIP in a clean WordPress Studio site and confirm activation,
-Settings > Aculect Blocks saves successfully, public patterns insert cleanly,
-and enabled schema is generated only from visible supported core-block content.
+Install the ZIP in an isolated `wp-env`, Docker, or WordPress Playground
+environment and confirm activation, Settings > Aculect Blocks saves
+successfully, public patterns insert cleanly, and enabled schema is generated
+only from visible supported core-block content. Use a WordPress Studio site only
+when the owner has explicitly designated it as a persistent proof environment.
 Run the proof with Aculect Theme and a generic block theme to confirm the plugin
 remains portable. Record the WordPress, PHP, Node, and active SEO-plugin
 versions with the candidate evidence.
