@@ -65,6 +65,7 @@
 .wp-block-group.is-style-aculect-section {
 	--aculect-section-padding-block: var(--wp--preset--spacing--6, 3rem);
 
+	border-block: 1px solid var(--wp--preset--color--border, #cbd5e1);
 	box-sizing: border-box;
 	padding-block: var(--aculect-section-padding-block);
 }
