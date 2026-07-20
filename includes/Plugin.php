@@ -12,10 +12,12 @@ namespace Aculect\Blocks;
 use Aculect\Blocks\Admin\AdminPage;
 use Aculect\Blocks\Assets\AdminAssets;
 use Aculect\Blocks\Assets\BlockAssets;
+use Aculect\Blocks\Blocks\CoreBlockPatterns;
 use Aculect\Blocks\Blocks\CoreBlockStyles;
 use Aculect\Blocks\Contracts\Module;
+use Aculect\Blocks\Integrations\CoreAccordionSchema;
 use Aculect\Blocks\Integrations\CoreBreadcrumbSchema;
-use Aculect\Blocks\Integrations\RankMathFaqSchema;
+use Aculect\Blocks\Schema\SchemaOutput;
 use Aculect\Blocks\Settings\SettingsRepository;
 
 /**
@@ -37,10 +39,18 @@ final class Plugin {
 	private SettingsRepository $settings;
 
 	/**
+	 * Shared schema output helper.
+	 *
+	 * @var SchemaOutput
+	 */
+	private SchemaOutput $schema_output;
+
+	/**
 	 * Creates the plugin composition root.
 	 */
 	private function __construct() {
-		$this->settings = new SettingsRepository();
+		$this->settings      = new SettingsRepository();
+		$this->schema_output = new SchemaOutput();
 	}
 
 	/**
@@ -87,8 +97,9 @@ final class Plugin {
 			new AdminAssets(),
 			new BlockAssets( $this->settings ),
 			new CoreBlockStyles( $this->settings ),
-			new CoreBreadcrumbSchema( $this->settings ),
-			new RankMathFaqSchema( $this->settings ),
+			new CoreBlockPatterns( $this->settings ),
+			new CoreBreadcrumbSchema( $this->settings, $this->schema_output ),
+			new CoreAccordionSchema( $this->settings, $this->schema_output ),
 		);
 	}
 }

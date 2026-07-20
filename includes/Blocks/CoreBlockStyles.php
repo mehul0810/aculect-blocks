@@ -49,11 +49,12 @@ final class CoreBlockStyles implements Module {
 
 		$styles = array(
 			'core/group'     => array(
-				'aculect-surface' => __( 'Aculect Surface', 'aculect-blocks' ),
-				'aculect-card'    => __( 'Aculect Card', 'aculect-blocks' ),
-				'aculect-callout' => __( 'Aculect Callout', 'aculect-blocks' ),
-				'aculect-hero'    => __( 'Aculect Hero', 'aculect-blocks' ),
-				'aculect-section' => __( 'Section', 'aculect-blocks' ),
+				'aculect-surface'        => __( 'Aculect Surface', 'aculect-blocks' ),
+				'aculect-card'           => __( 'Aculect Card', 'aculect-blocks' ),
+				'aculect-clickable-card' => __( 'Aculect Clickable Card', 'aculect-blocks' ),
+				'aculect-callout'        => __( 'Aculect Callout', 'aculect-blocks' ),
+				'aculect-hero'           => __( 'Aculect Hero', 'aculect-blocks' ),
+				'aculect-section'        => __( 'Section', 'aculect-blocks' ),
 			),
 			'core/accordion' => array(
 				'aculect-faq' => array(
