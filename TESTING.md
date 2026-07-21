@@ -37,24 +37,26 @@ npm run lint
 The CI workflow runs the same checks on PHP 8.2, 8.3, and 8.4 plus Node 24.
 Use the same command names locally so failures line up with CI output.
 
-## Studio Checks
+## Runtime Checks
 
-Use the active Studio site when you need runtime proof against the real plugin
-surface:
+Use an isolated `wp-env`, Docker, or WordPress Playground environment for
+release proof. A Studio site may be used only when the owner has explicitly
+designated it as a persistent proof environment. Replace `<site-path>` with the
+approved proof site's path when using Studio:
 
 ```bash
-studio wp --path=/Users/mehulgohil/Studio/aculect-studio plugin list --status=active --field=name
-studio wp --path=/Users/mehulgohil/Studio/aculect-studio option get home
-studio wp --path=/Users/mehulgohil/Studio/aculect-studio option get siteurl
-studio wp --path=/Users/mehulgohil/Studio/aculect-studio eval 'echo wp_is_block_theme() ? "block-theme" : "classic-theme";'
+studio wp --path=<site-path> plugin list --status=active --field=name
+studio wp --path=<site-path> option get home
+studio wp --path=<site-path> option get siteurl
+studio wp --path=<site-path> eval 'echo wp_is_block_theme() ? "block-theme" : "classic-theme";'
 ```
 
 Use additional Studio checks when needed for the touched surface:
 
 ```bash
-studio wp --path=/Users/mehulgohil/Studio/aculect-studio post get <page-id> --field=post_status
-studio wp --path=/Users/mehulgohil/Studio/aculect-studio post get <page-id> --field=guid
-studio wp --path=/Users/mehulgohil/Studio/aculect-studio plugin check aculect-blocks
+studio wp --path=<site-path> post get <page-id> --field=post_status
+studio wp --path=<site-path> post get <page-id> --field=guid
+studio wp --path=<site-path> plugin check aculect-blocks
 ```
 
 If Plugin Check is not installed or cannot run in the current Studio setup,
@@ -85,16 +87,29 @@ For 0.1.0, the minimum runtime matrix is:
   duplicate graph output when Rank Math or Yoast already provide it,
 - Accordion schema emits `FAQPage` only from complete visible rows.
 
-## Browser Proof Expectations
+## Browser and Screenshot Evidence
 
-When a change is visually meaningful, capture screenshots from the live Studio
-site instead of relying on terminal output alone.
+When a change is visually meaningful, capture screenshots from the approved
+runtime instead of relying on terminal output alone. This is mandatory for
+acceptance of changes to settings, editor guidance, block styles, patterns, or
+frontend rendering. Schema-only code needs reproducible rendered-output proof;
+capture a screenshot too when a UI control changes its behavior.
 
-Capture at least:
+Capture at least these desktop views:
 
 - admin/settings surface,
 - editor or block editor surface,
 - frontend rendering surface.
+
+Capture a mobile viewport for each changed frontend pattern or block style, and
+for any responsive admin/editor layout touched by the change. The screenshots
+must show the browser chrome or enough surrounding WordPress UI to identify the
+surface, and they must be attached to the pull request or linked from the issue.
+
+For a release candidate, retain one evidence set covering the settings screen,
+an inserted pattern in the editor, the pattern on the frontend, and the
+relevant schema output. If a required surface cannot be captured, record the
+specific runtime blocker and keep the issue open.
 
 Use proof artifacts that show the full affected surface and enough surrounding
 UI to confirm context. If a surface is partially loaded or blocked, do not claim

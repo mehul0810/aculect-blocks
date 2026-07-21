@@ -33,6 +33,7 @@ jobs:
           coverage: none
       - run: composer validate --strict
       - run: composer install --no-interaction --prefer-dist
+      - run: composer syntax
       - run: composer lint
       - run: composer phpstan
       - run: composer test
