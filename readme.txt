@@ -45,8 +45,19 @@ No. Schema output is limited to block-derived BreadcrumbList and FAQPage data. S
 
 No. The plugin can emit valid FAQPage structured data from visible Accordion content, but search engines decide how and whether to use it.
 
+= Can developers customize schema output? =
+
+Yes. Aculect Blocks provides the `aculect_blocks_enable_faq_schema`, `aculect_blocks_faq_schema_items`, and `aculect_blocks_enable_breadcrumb_schema` filters. Extensions must preserve the rule that schema comes from visible supported core-block content.
+
 == Changelog ==
 
 = 0.1.0 =
 
 * Public MVP rework for core block enhancements, block-derived schema, patterns, and validation.
+* Documents supported schema filters, compatibility, and first-release upgrade expectations.
+
+== Upgrade Notice ==
+
+= 0.1.0 =
+
+First public release. Configure optional modules under Settings > Aculect Blocks after activation.
